@@ -1,0 +1,126 @@
+@use "base" as *;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wpb-size-3);
+  max-width: 640px;
+  margin-inline: auto;
+}
+
+.field {
+  // 4px スケールに乗らないフォームコントロール固有の微調整値（ブロック限りのローカル変数）
+  $_size01: 6px;
+  $_size02: 10px;
+  $_size03: 12px;
+
+  display: flex;
+  flex-direction: column;
+  gap: $_size01;
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: $_size01;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding-block: $_size02;
+    padding-inline: $_size03;
+    font-size: 16px;
+    color: var(--wpb-color-text);
+    background: var(--wpb-color-background);
+    border: 1px solid var(--wpb-color-border-strong);
+    border-radius: 2px;
+    transition: border-color 0.15s ease;
+
+    &[aria-invalid="true"] {
+      border-color: var(--wpb-color-danger);
+    }
+
+    @include hover {
+      border-color: var(--wpb-color-accent);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--wpb-color-focus-ring);
+      outline-offset: 2px;
+    }
+  }
+
+  textarea {
+    resize: vertical;
+  }
+}
+
+.labelText {
+  $_size01: 2px;
+
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--wpb-color-text);
+
+  span {
+    margin-inline: $_size01 0;
+    color: var(--wpb-color-accent);
+  }
+}
+
+.error {
+  margin: 0;
+  font-size: 12px;
+  color: var(--wpb-color-danger);
+}
+
+.honeypot {
+  display: none;
+}
+
+.success {
+  max-width: 640px;
+  padding: var(--wpb-size-4);
+  margin-inline: auto;
+  text-align: center;
+
+  p {
+    margin: 0;
+    font-size: 16px;
+    color: var(--wpb-color-text);
+
+    & + p {
+      margin-block: var(--wpb-size-1) 0;
+    }
+  }
+}
+
+.submitError {
+  margin: 0;
+  font-size: 14px;
+  color: var(--wpb-color-danger);
+}
+
+.submit {
+  $_size01: 12px;
+
+  align-self: flex-start;
+  padding-block: $_size01;
+  padding-inline: var(--wpb-size-4);
+  font-size: 16px;
+  color: var(--wpb-color-text-cta);
+  cursor: pointer;
+  background: var(--wpb-color-accent);
+  border: none;
+  border-radius: var(--wpb-radius-pill);
+  transition: opacity 0.15s ease;
+
+  @include hover {
+    opacity: 0.7;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+  }
+}
