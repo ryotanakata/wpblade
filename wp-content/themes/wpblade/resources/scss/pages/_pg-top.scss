@@ -29,7 +29,7 @@
         margin-block: var(--wpb-size-4) 0;
         font-size: fluid-clamp(14px, 17px, 375, 768);
         line-height: 1.75;
-        color: var(--wpb-color-text-light);
+        color: var(--wpb-color-text-weak);
       }
 
       // ボタン群コンテナ（h1・p と異なるタグで区別可能なので無クラス div で受ける）
@@ -51,7 +51,9 @@
           text-transform: uppercase;
           letter-spacing: 0.06em;
           border-radius: var(--wpb-radius-pill);
-          transition: opacity 0.15s ease, border-color 0.15s ease;
+          transition:
+            opacity 0.15s ease,
+            border-color 0.15s ease;
 
           &:first-child {
             color: var(--wpb-color-text-cta);

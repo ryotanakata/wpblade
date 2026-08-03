@@ -59,9 +59,11 @@
       }
 
       a {
-        color: var(--wpb-color-text-light);
+        color: var(--wpb-color-text-weak);
         border: 1px solid var(--wpb-color-border);
-        transition: border-color 0.15s ease, color 0.15s ease;
+        transition:
+          border-color 0.15s ease,
+          color 0.15s ease;
 
         @include hover {
           color: var(--wpb-color-text);

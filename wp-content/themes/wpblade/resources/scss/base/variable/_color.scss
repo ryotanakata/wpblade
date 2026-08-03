@@ -34,16 +34,18 @@
   --wpb-color-accent: var(--wpb-color-black); /* Nike: 黒がアクションカラー */
 
   /* テキスト */
-  --wpb-color-text: var(--wpb-color-gray-900);       /* 本文（ほぼ黒） */
-  --wpb-color-text-light: var(--wpb-color-gray-500); /* 補足・キャプション */
-  --wpb-color-text-cta: var(--wpb-color-white);      /* アクション面上の文字 */
+  --wpb-color-text: var(--wpb-color-gray-900); /* 本文（ほぼ黒） */
+  --wpb-color-text-weak: var(--wpb-color-gray-500); /* 補足・キャプション */
+  --wpb-color-text-cta: var(--wpb-color-white); /* アクション面上の文字 */
 
   /* 背景・面（surface） */
-  --wpb-color-background: var(--wpb-color-white);         /* ページ地色（白） */
-  --wpb-color-background-muted: var(--wpb-color-gray-50); /* 薄いセクション地・入力欄 */
+  --wpb-color-background: var(--wpb-color-white); /* ページ地色（白） */
+  --wpb-color-background-muted: var(
+    --wpb-color-gray-50
+  ); /* 薄いセクション地・入力欄 */
 
   /* ボーダー・区切り */
-  --wpb-color-border: var(--wpb-color-gray-100);        /* 既定の枠線 */
+  --wpb-color-border: var(--wpb-color-gray-100); /* 既定の枠線 */
   --wpb-color-border-strong: var(--wpb-color-gray-300); /* 強めの枠線 */
 
   /* フォーカスリング（a11y：:focus-visible の outline 色） */
