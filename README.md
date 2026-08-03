@@ -29,8 +29,6 @@ WPBlade solves this without abandoning WordPress. It applies modern software des
 | Keep performance-first | React loaded only on pages that need it; Vanilla JS everywhere else |
 | Ship securely | Escaping at the Service layer, CRLF-safe email headers, nonce enforcement built in |
 
-![](.github/code-comparison.png)
-
 ### Design Philosophy
 
 **WordPress template hierarchy as routing**

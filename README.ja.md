@@ -29,8 +29,6 @@ WPBlade はその問題を、WordPress を捨てずに解決する。PSR-4 名�
 | パフォーマンスを犠牲にしたくない | React は必要なページのみ読み込み、それ以外は Vanilla JS |
 | セキュリティを後回しにしたくない | Service 層でのエスケープ、CRLF セーフなメールヘッダー、nonce 検証が最初から組み込まれている |
 
-![](.github/code-comparison.png)
-
 ## 設計思想
 
 **WordPress テンプレート階層をルーティングとして使う**
