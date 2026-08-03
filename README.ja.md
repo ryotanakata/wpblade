@@ -2,6 +2,7 @@
 
 **BladeOne・Vite・Claude Code を組み合わせたモダンな WordPress テーマスターター。**
 
+[![CI](https://github.com/ryotanakata/wpblade/actions/workflows/ci.yml/badge.svg)](https://github.com/ryotanakata/wpblade/actions/workflows/ci.yml)
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 ![PHP](https://img.shields.io/badge/PHP-8.2%2B-777BB4)
 ![Node.js](https://img.shields.io/badge/Node.js-v22-339933)
@@ -46,6 +47,9 @@ React はインタラクティブな状態管理が必要なページ（`is_page
 **全リソースを3層構造で揃える**
 `views/`・`scss/`・`js/`・`ts/`・`images/` をすべて `base / components / pages` の3層で構成する。どこに何があるかを「共通基盤か・再利用コンポーネントか・ページ固有か」の問いで即座に判断できる。
 
+**計測をインフラとして持つ**
+トラッキングは宣言的に書く。任意の要素に `data-click-insight="click_cta_hero"` を付けるだけでイベントが送信される。クリックとフォーム入力は `document` 上のイベント委譲で、表示（インプレッション）は `IntersectionObserver` で捕捉する。イベント名はプレフィックス allowlist（`click_` / `input_` / `show_`）で絞り込み、意図しないイベントが `dataLayer` に混ざらないようにする。同一イベントの連続送信はスロットルで抑制する。React が後からマウントする要素も `MutationObserver` が拾うため、ページごとの計測コードは不要。計測フックは `data-*` に閉じており、クラス名を汚さない。
+
 **セキュリティをデフォルトにする**
 出力エスケープ（`esc_html`・`esc_attr`・`esc_url`）はテンプレートに届く前の Service 層で行い、Blade 側で忘れる事故を防ぐ。メールヘッダーインジェクション（CRLF）は下流ライブラリに依存せず明示的に除去する。REST API の nonce 検証は `permission_callback` で強制する。
 
@@ -61,6 +65,7 @@ React はインタラクティブな状態管理が必要なページ（`is_page
 | CSS プリプロセッサ | Sass（SCSS） |
 | React（一部ページ） | React 19 + TypeScript + React Hook Form + Zod |
 | アニメーション | [GSAP](https://gsap.com/) 3 / [Splide](https://splidejs.com/) 4 |
+| 計測 | 宣言的な `dataLayer` 層（GTM / GA4 対応） |
 | バリデーション（PHP） | [Respect\Validation](https://respect-validation.readthedocs.io/) |
 | コードフォーマッター | [Prettier](https://prettier.io/) 3.x |
 | PHP | 8.2+ |
@@ -125,6 +130,7 @@ npm run dev           # 開発サーバ起動（HMR あり）
 npm run build         # 本番ビルド
 npm run format        # JS / SCSS / Blade / PHP をフォーマット
 npm run format:check  # フォーマットチェックのみ（書き換えなし）
+npm run typecheck     # tsc --noEmit（型チェック）
 ```
 
 ## ディレクトリ構成
@@ -267,6 +273,36 @@ Claude Code を使わない場合でも、ルールファイルはプロジェ�
 | `WPBLADE_ENV` | `production` のみ実際の宛先へ送信 |
 | `WPBLADE_SMTP_HOST` | SMTP ホスト（デフォルト: `mailpit`） |
 | `WPBLADE_SMTP_PORT` | SMTP ポート（デフォルト: `1025`） |
+
+## 計測用属性
+
+属性を付けるだけでイベントが飛ぶ。他に配線は要らない。
+
+```html
+<a href="/contact" data-click-insight="click_cta_hero" data-param-insight="top">お問い合わせ</a>
+<input type="email" name="email" data-input-insight="input_contact_email">
+<section data-show-insight="show_pricing_table">…</section>
+```
+
+| 属性 | 発火タイミング | 必須プレフィックス |
+| --- | --- | --- |
+| `data-click-insight` | クリック（`document` へのイベント委譲） | `click_` |
+| `data-input-insight` | テキスト入力は `focusout`（値が妥当かつ非空のときのみ）、ラジオ / チェックボックス / セレクトは `change` | `input_` |
+| `data-show-insight` | 要素が初めてビューポートに入ったとき（`IntersectionObserver`。以降は `unobserve`） | `show_` |
+| `data-param-insight` | —（任意の値を `n_param` として一緒に送る） | — |
+
+送信されるのは `event`・`n_param`・`n_el_type`・`n_el_class`（入力系はさらに `n_el_name`）。プレフィックス allowlist を通らないイベント名は破棄される。クリックと入力は同一イベント名につき 100ms に1回までスロットルされ、表示イベントはスロットルを通さない（同時に複数が発火するのを許容するため）。属性名と許可プレフィックスは [dataLayerConstant.js](wp-content/themes/wpblade/resources/js/constants/dataLayerConstant.js) で設定する。
+
+## テストについて
+
+WPBlade はテストフレームワークを同梱しない。PHPUnit / Pest の選択、テスト戦略はプロジェクト側の判断領域であり、スターターが決めるべきではない。`composer require --dev phpunit/phpunit` で任意に追加できる構成になっている。
+
+CI では型チェック（`tsc --noEmit`）とフォーマット検証のみを実行している。
+
+```bash
+npm run typecheck     # tsc --noEmit（型チェック）
+npm run format:check  # 整形チェックのみ（ファイルを書き換えない）
+```
 
 ## カスタム投稿タイプ
 

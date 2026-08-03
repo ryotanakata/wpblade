@@ -24,6 +24,9 @@ npm run build
 # コードフォーマット（Prettier）
 npm run format        # resources/ 以下の JS / TS / SCSS / Blade / PHP を整形
 npm run format:check  # 整形チェックのみ（ファイルを書き換えない）
+
+# 型チェック
+npm run typecheck     # tsc --noEmit
 ```
 
 - WordPress: http://localhost:8080
@@ -31,7 +34,9 @@ npm run format:check  # 整形チェックのみ（ファイルを書き換え�
 - Vite dev サーバ: http://localhost:5173
 - Mailpit（開発用メール UI）: http://localhost:8025
 
-環境変数は `.env.example` をコピーして `.env` を作成する。テストスイートは現時点では存在しない。
+環境変数は `.env.example` をコピーして `.env` を作成する。
+
+**テストは意図的に同梱しない**（PHPUnit / Pest の選択とテスト戦略はプロジェクト側の判断領域。README 参照）。CI（[.github/workflows/ci.yml](.github/workflows/ci.yml)）は `npm run typecheck` と `npm run format:check` のみを実行する。この2つはローカルでも push 前に通しておく。
 
 **メール環境変数**（`.env.example` 参照。振り分けの挙動は [backend/php.md](.claude/rules/backend/php.md) の「メール機能」）:
 

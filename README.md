@@ -2,6 +2,7 @@
 
 **A modern WordPress theme starter built for maintainability — powered by BladeOne, Vite, and Claude Code.**
 
+[![CI](https://github.com/ryotanakata/wpblade/actions/workflows/ci.yml/badge.svg)](https://github.com/ryotanakata/wpblade/actions/workflows/ci.yml)
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 ![PHP](https://img.shields.io/badge/PHP-8.2%2B-777BB4)
 ![Node.js](https://img.shields.io/badge/Node.js-v22-339933)
@@ -46,6 +47,9 @@ React loads only on pages that require interactive state (`is_page(['contact'])`
 **3-layer resource structure**
 `views/`, `scss/`, `js/`, `ts/`, and `images/` all follow the same `base / components / pages` hierarchy. Same mental model everywhere: infrastructure, reusable component, or page-specific?
 
+**Analytics as infrastructure**
+Tracking is declarative: add `data-click-insight="click_cta_hero"` to any element and the event ships itself. Clicks and form inputs are captured by delegated listeners on `document`; impressions by an `IntersectionObserver`. Event names are filtered through a prefix allowlist (`click_` / `input_` / `show_`) so stray events never reach `dataLayer`, and repeat pushes are throttled. Impression targets mounted later — React subtrees included — are picked up by a `MutationObserver`. No per-page tracking code, and analytics hooks stay in `data-*` instead of polluting class names.
+
 **Security as a default**
 Output escaping (`esc_html`, `esc_attr`, `esc_url`) is done at the Service layer before data reaches Blade — so it can't be forgotten in templates. CRLF is stripped from email headers explicitly, not delegated to downstream libraries. REST API nonce verification is enforced at `permission_callback`.
 
@@ -61,6 +65,7 @@ Output escaping (`esc_html`, `esc_attr`, `esc_url`) is done at the Service layer
 | CSS Preprocessor | Sass (SCSS) |
 | React (selected pages) | React 19 + TypeScript + React Hook Form + Zod |
 | Animation | [GSAP](https://gsap.com/) 3 / [Splide](https://splidejs.com/) 4 |
+| Analytics | Declarative `dataLayer` layer (GTM / GA4 ready) |
 | PHP Validation | [Respect\Validation](https://respect-validation.readthedocs.io/) |
 | Code Formatter | [Prettier](https://prettier.io/) 3.x |
 | PHP | 8.2+ |
@@ -125,6 +130,7 @@ npm run dev           # Start dev server with HMR
 npm run build         # Production build
 npm run format        # Format JS / SCSS / Blade / PHP
 npm run format:check  # Check formatting without writing files
+npm run typecheck     # tsc --noEmit
 ```
 
 ### Directory Structure
@@ -267,6 +273,36 @@ All emails are captured by Mailpit in development when `WPBLADE_ENV` is not `pro
 | `WPBLADE_ENV` | Real delivery only when `production` |
 | `WPBLADE_SMTP_HOST` | SMTP host (default: `mailpit`) |
 | `WPBLADE_SMTP_PORT` | SMTP port (default: `1025`) |
+
+### Analytics Attributes
+
+Add an attribute, get an event. Nothing else to wire up.
+
+```html
+<a href="/contact" data-click-insight="click_cta_hero" data-param-insight="top">Contact us</a>
+<input type="email" name="email" data-input-insight="input_contact_email">
+<section data-show-insight="show_pricing_table">…</section>
+```
+
+| Attribute | Fires on | Required prefix |
+| --- | --- | --- |
+| `data-click-insight` | Click (delegated on `document`) | `click_` |
+| `data-input-insight` | `focusout` for text inputs (only when valid and non-empty), `change` for radio / checkbox / select | `input_` |
+| `data-show-insight` | First time the element enters the viewport (`IntersectionObserver`, unobserved afterwards) | `show_` |
+| `data-param-insight` | — (optional value passed through as `n_param`) | — |
+
+Each push carries `event`, `n_param`, `n_el_type`, `n_el_class` — plus `n_el_name` for inputs. Names failing the prefix allowlist are dropped. Click and input events are throttled to one push per 100 ms per event name; impressions bypass the throttle so several can fire in the same frame. Configure the attribute names and allowed prefixes in [dataLayerConstant.js](wp-content/themes/wpblade/resources/js/constants/dataLayerConstant.js).
+
+### Testing
+
+WPBlade ships no test framework. Choosing between PHPUnit and Pest — and deciding on a testing strategy at all — belongs to the project, not to the starter. Add one whenever you want: `composer require --dev phpunit/phpunit`.
+
+CI runs type checking (`tsc --noEmit`) and format verification only.
+
+```bash
+npm run typecheck     # tsc --noEmit
+npm run format:check  # Check formatting without writing files
+```
 
 ### Custom Post Types
 
