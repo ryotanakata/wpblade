@@ -1,0 +1,18 @@
+{
+  "name": "wpblade/theme",
+  "type": "project",
+  "require": {
+    "php": ">=8.2",
+    "eftec/bladeone": "^4.0",
+    "fig/http-message-util": "^1.1",
+    "respect/validation": "^2.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "WpBlade\\": "app/"
+    }
+  },
+  "config": {
+    "optimize-autoloader": true
+  }
+}
