@@ -1,0 +1,61 @@
+:root {
+  /*-----------------------------------
+    ① プリミティブ：色相 + 明度スケール
+       （番号 = 明度。100 明るい → 900 暗い）
+  -----------------------------------*/
+  --wpb-color-gray-50: #f5f5f5;
+  --wpb-color-gray-100: #e5e5e5;
+  --wpb-color-gray-300: #a3a3a3;
+  --wpb-color-gray-500: #737373;
+  --wpb-color-gray-700: #404040;
+  --wpb-color-gray-900: #171717;
+
+  /* 状態用の色相（フォーム検証・通知）も番号 = 明度で持つ */
+  --wpb-color-red-100: #fff0f0; /* 薄地（通知背景） */
+  --wpb-color-red-500: #ff0000; /* 基準（枠線・アイコン） */
+  --wpb-color-red-700: #cc0000; /* 濃い文字 */
+  --wpb-color-green-100: #f0fdf4;
+  --wpb-color-green-500: #22c55e;
+  --wpb-color-green-700: #16a34a;
+
+  /*-----------------------------------
+    ② ベーシック：スケールに乗らない普遍の絶対色
+  -----------------------------------*/
+  --wpb-color-white: #ffffff;
+  --wpb-color-black: #000000;
+
+  /*-----------------------------------
+    ③ セマンティック：用途名で①②を参照（生の hex は持たない）
+  -----------------------------------*/
+
+  /* ブランド */
+  --wpb-color-primary: var(--wpb-color-black);
+  --wpb-color-secondary: var(--wpb-color-white);
+  --wpb-color-accent: var(--wpb-color-black); /* Nike: 黒がアクションカラー */
+
+  /* テキスト */
+  --wpb-color-text: var(--wpb-color-gray-900);       /* 本文（ほぼ黒） */
+  --wpb-color-text-light: var(--wpb-color-gray-500); /* 補足・キャプション */
+  --wpb-color-text-cta: var(--wpb-color-white);      /* アクション面上の文字 */
+
+  /* 背景・面（surface） */
+  --wpb-color-background: var(--wpb-color-white);         /* ページ地色（白） */
+  --wpb-color-background-muted: var(--wpb-color-gray-50); /* 薄いセクション地・入力欄 */
+
+  /* ボーダー・区切り */
+  --wpb-color-border: var(--wpb-color-gray-100);        /* 既定の枠線 */
+  --wpb-color-border-strong: var(--wpb-color-gray-300); /* 強めの枠線 */
+
+  /* フォーカスリング（a11y：:focus-visible の outline 色） */
+  --wpb-color-focus-ring: var(--wpb-color-black);
+
+  /* フィードバック：エラー（フォーム検証・失敗通知） */
+  --wpb-color-danger: var(--wpb-color-red-500);
+  --wpb-color-danger-text: var(--wpb-color-red-700);
+  --wpb-color-danger-background: var(--wpb-color-red-100);
+
+  /* フィードバック：成功（送信完了通知など） */
+  --wpb-color-success: var(--wpb-color-green-500);
+  --wpb-color-success-text: var(--wpb-color-green-700);
+  --wpb-color-success-background: var(--wpb-color-green-100);
+}

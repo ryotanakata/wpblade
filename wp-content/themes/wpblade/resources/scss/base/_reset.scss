@@ -1,0 +1,146 @@
+//  A modern CSS reset
+//　https://github.com/andy-piccalilli/modern-css-reset
+
+// Box sizing rules
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+// Remove default margin
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+ul,
+ol,
+li,
+p,
+figure,
+fieldset,
+legend,
+blockquote,
+dl,
+dd,
+hr {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+// Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed
+
+ul,
+ol,
+summary {
+  list-style: none;
+  list-style-type: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+// Set core root defaults
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+// Set core body defaults
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+// Set core main defaults {
+
+main {
+  display: block;
+}
+
+// Set core aside defaults {
+
+aside {
+  display: block;
+}
+
+// A elements that don't have a class get default styles
+
+a {
+  background-color: transparent;
+  text-decoration: none;
+  color: inherit;
+}
+
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+// Make images easier to work with
+
+img,
+picture {
+  max-width: 100%;
+  display: block;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-touch-callout: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+// Inherit fonts for inputs and buttons
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  letter-spacing: inherit;
+  background-color: transparent;
+  border: none;
+  appearance: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+// Reset dialog user agent stylesheet
+
+dialog {
+  width: auto;
+  max-width: none;
+  height: auto;
+  max-height: none;
+  padding: 0;
+  color: inherit;
+  background-color: transparent;
+  border: none;
+  overflow: visible;
+  &::backdrop {
+    background-color: transparent;
+  }
+}
+
+// Remove all animations and transitions for people that prefer not to see them
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

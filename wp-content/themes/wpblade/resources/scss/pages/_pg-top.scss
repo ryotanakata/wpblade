@@ -1,0 +1,125 @@
+@use "../base" as *;
+
+.pg-top {
+  &-hero {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    min-height: 90vh;
+    min-height: 90dvh;
+    overflow: hidden;
+    background-color: var(--wpb-color-background);
+
+    & > div {
+      width: 100%;
+      padding-block: 0 clamp(40px, 7vw, 80px);
+      padding-inline: clamp(16px, 4vw, 40px);
+
+      h1 {
+        font-family: var(--wpb-font-display), var(--wpb-font-jp), sans-serif;
+        font-size: fluid-clamp(56px, 160px, 375, 1440);
+        font-weight: 900;
+        line-height: 0.9;
+        color: var(--wpb-color-text);
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+      }
+
+      p {
+        margin-block: var(--wpb-size-4) 0;
+        font-size: fluid-clamp(14px, 17px, 375, 768);
+        line-height: 1.75;
+        color: var(--wpb-color-text-light);
+      }
+
+      // ボタン群コンテナ（h1・p と異なるタグで区別可能なので無クラス div で受ける）
+      & > div {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--wpb-size-2);
+        margin-block: var(--wpb-size-5) 0;
+
+        a {
+          $_size01: 52px;
+
+          display: inline-flex;
+          align-items: center;
+          height: $_size01;
+          padding-inline: var(--wpb-size-5);
+          font-size: 14px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.06em;
+          border-radius: var(--wpb-radius-pill);
+          transition: opacity 0.15s ease, border-color 0.15s ease;
+
+          &:first-child {
+            color: var(--wpb-color-text-cta);
+            background-color: var(--wpb-color-accent);
+
+            @include hover {
+              opacity: 0.75;
+            }
+          }
+
+          &:last-child {
+            color: var(--wpb-color-text);
+            border: 1px solid var(--wpb-color-border-strong);
+
+            @include hover {
+              border-color: var(--wpb-color-text);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &-columns {
+    background-color: var(--wpb-color-background-muted);
+
+    & > div {
+      width: min(100% - 32px, 1080px);
+      padding-block: clamp(48px, 8vw, 96px);
+      margin-inline: auto;
+
+      & > h2 {
+        margin-block: 0 var(--wpb-size-6);
+        font-family: var(--wpb-font-display), var(--wpb-font-jp), sans-serif;
+        font-size: fluid-clamp(28px, 48px, 375, 768);
+        font-weight: 900;
+        line-height: 1;
+        text-transform: uppercase;
+        letter-spacing: -0.01em;
+      }
+
+      & > a {
+        display: inline-flex;
+        align-items: center;
+        margin-block: var(--wpb-size-6) 0;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--wpb-color-text);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        transition: opacity 0.15s ease;
+
+        @include hover {
+          opacity: 0.5;
+        }
+      }
+    }
+
+    &-list {
+      display: grid;
+      gap: var(--wpb-size-4);
+      list-style: none;
+
+      @include media-size() {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  }
+}

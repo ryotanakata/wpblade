@@ -1,0 +1,33 @@
+// use [Object/Utility]
+// ----------------------------------------------------------
+@use "../mixin" as *;
+
+.u-text {
+  &--right {
+    text-align: right;
+  }
+  &--center {
+    text-align: center;
+  }
+  &--left {
+    text-align: left;
+  }
+  &--top {
+    vertical-align: top;
+  }
+  &--middle {
+    vertical-align: middle;
+  }
+  &--bottom {
+    vertical-align: bottom;
+  }
+  &--bold {
+    font-weight: bold;
+  }
+  &--thin {
+    font-weight: thin;
+  }
+  &--nowrap {
+    white-space: nowrap;
+  }
+}

@@ -1,0 +1,26 @@
+@use "sass:math";
+@use "function" as *;
+@use "mixin" as *;
+
+:root {
+  --wpb-font-display: "Barlow Condensed";
+  --wpb-font-jp: "Noto Sans JP";
+  --wpb-font-en: "Inter";
+  --wpb-radius-pill: 32px; /* ピル型ボタン用 */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  font-family: var(--wpb-font-en), var(--wpb-font-jp), sans-serif;
+  font-size: inherit;
+  font-feature-settings: "palt" 1;
+  line-height: 1;
+  color: var(--wpb-color-text);
+  letter-spacing: 0.02em;
+  background-color: var(--wpb-color-background);
+}

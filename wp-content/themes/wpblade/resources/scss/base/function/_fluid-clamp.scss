@@ -1,0 +1,37 @@
+@use "sass:math";
+@use "strip-unit" as *;
+
+// fluid-clamp（clampに挿入する値を計算して返却）
+// -----------------------------------------------------------------
+@function fluid-clamp(
+  $minSize,
+  $maxSize,
+  $minWidth: 375,
+  $maxWidth: 768,
+  $unit: "vw"
+) {
+  $minSize: strip-unit($minSize);
+  $maxSize: strip-unit($maxSize);
+  $minWidth: strip-unit($minWidth);
+  $maxWidth: strip-unit($maxWidth);
+
+  @if ($maxSize <= $minSize) or ($maxWidth <= $minWidth) {
+    @warn "fluid-clamp(): max must exceed min. Returned #{$minSize}px.";
+    @return #{$minSize + "px"};
+  }
+
+  $rate: math.div(($maxSize - $minSize), ($maxWidth - $minWidth));
+
+  @return clamp(
+    #{$minSize + "px"},
+    calc(
+      #{$minSize + "px"} + #{$rate} * (#{100 + $unit} - #{$minWidth + "px"})
+    ),
+    #{$maxSize + "px"}
+  );
+}
+
+// 呼び出し方
+// .foo {
+//     font-size: fluid-clamp(10px, 50px, 375, 768);
+// }

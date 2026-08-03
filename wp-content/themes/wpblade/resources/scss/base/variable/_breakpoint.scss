@@ -1,0 +1,10 @@
+//ターゲットデバイスは画面幅375px以上の端末。iPhone SEなどで崩れる場合に 'xs'を使用する
+$breakpoint: (
+  "xxs": "(max-width: 320px)",
+  "xs": "(max-width: 374px)",
+  "s": "(min-width: 481px)",
+  "m": "(min-width: 768px)",
+  "l": "(min-width: 1024px)",
+  "xl": "(min-width: 1180px)",
+  "xxl": "(min-width: 1440px)",
+) !default;

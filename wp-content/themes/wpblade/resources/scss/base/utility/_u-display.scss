@@ -1,0 +1,200 @@
+// use [Object/Utility]
+// ----------------------------------------------------------
+@use "../mixin" as *;
+
+.u-display {
+  &--block {
+    display: block;
+  }
+  &--none {
+    display: none;
+  }
+  &--inline {
+    display: inline;
+  }
+  &--inlinblock {
+    display: inline-block;
+  }
+  &-xxs {
+    &--block {
+      display: none;
+      @include media-size("xxs") {
+        display: block;
+      }
+    }
+    &--none {
+      display: block;
+      @include media-size("xxs") {
+        display: none;
+      }
+    }
+    &--inline {
+      display: none;
+      @include media-size("xxs") {
+        display: inline;
+      }
+    }
+    &--inlineblock {
+      display: none;
+      @include media-size("xxs") {
+        display: inline-block;
+      }
+    }
+  }
+  &-xs {
+    &--block {
+      display: none;
+      @include media-size("xs") {
+        display: block;
+      }
+    }
+    &--none {
+      display: block;
+      @include media-size("xs") {
+        display: none;
+      }
+    }
+    &--inline {
+      display: none;
+      @include media-size("xs") {
+        display: inline;
+      }
+    }
+    &--inlineblock {
+      display: none;
+      @include media-size("xs") {
+        display: inline-block;
+      }
+    }
+  }
+  &-s {
+    &--block {
+      display: none;
+      @include media-size("s") {
+        display: block;
+      }
+    }
+    &--none {
+      display: block;
+      @include media-size("s") {
+        display: none;
+      }
+    }
+    &--inline {
+      display: none;
+      @include media-size("s") {
+        display: inline;
+      }
+    }
+    &--inlineblock {
+      display: none;
+      @include media-size("s") {
+        display: inline-block;
+      }
+    }
+  }
+  &-m {
+    &--block {
+      display: none;
+      @include media-size() {
+        display: block;
+      }
+    }
+    &--none {
+      display: block;
+      @include media-size() {
+        display: none;
+      }
+    }
+    &--inline {
+      display: none;
+      @include media-size() {
+        display: inline;
+      }
+    }
+    &--inlineblock {
+      display: none;
+      @include media-size() {
+        display: inline-block;
+      }
+    }
+  }
+  &-l {
+    &--block {
+      display: none;
+      @include media-size("l") {
+        display: block;
+      }
+    }
+    &--none {
+      display: block;
+      @include media-size("l") {
+        display: none;
+      }
+    }
+    &--inline {
+      display: none;
+      @include media-size("l") {
+        display: inline;
+      }
+    }
+    &--inlineblock {
+      display: none;
+      @include media-size("l") {
+        display: inline-block;
+      }
+    }
+  }
+  &-xl {
+    &--block {
+      display: none;
+      @include media-size("xl") {
+        display: block;
+      }
+    }
+    &--none {
+      display: block;
+      @include media-size("xl") {
+        display: none;
+      }
+    }
+    &--inline {
+      display: none;
+      @include media-size("xl") {
+        display: inline;
+      }
+    }
+    &--inlineblock {
+      display: none;
+      @include media-size("xl") {
+        display: inline-block;
+      }
+    }
+  }
+  &-xxl {
+    &--block {
+      display: none;
+      @include media-size("xxl") {
+        display: block;
+      }
+    }
+    &--none {
+      display: block;
+      @include media-size("xxl") {
+        display: none;
+      }
+    }
+    &--inline {
+      display: none;
+      @include media-size("xxl") {
+        display: inline;
+      }
+    }
+    &--inlineblock {
+      display: none;
+      @include media-size("xxl") {
+        display: inline-block;
+      }
+    }
+  }
+}

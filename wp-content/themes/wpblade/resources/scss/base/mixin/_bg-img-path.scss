@@ -1,0 +1,13 @@
+@use "../variable" as *;
+
+// bg-img-path（背景画像を使用する際にパスを扱いやすくする）
+// -----------------------------------------------------------------
+@mixin bg-image-path($path, $fileName) {
+  background-image: url("#{$imagePath+$path+$fileName}");
+}
+
+// 呼び出し方（パス・ファイル名の規約は .claude/rules/frontend/image.md 参照）
+// .pg-column {
+//   $_image-dir: "pages/column/";
+//   @include bg-image-path($_image-dir, "mv_background_01-l--20260101.webp");
+// }

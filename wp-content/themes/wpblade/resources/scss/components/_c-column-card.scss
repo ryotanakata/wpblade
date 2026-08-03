@@ -1,0 +1,64 @@
+@use "../base" as *;
+
+// コラムカード（コラム一覧・トップの最新コラムで共通利用）
+// Nike: ボーダーなし・画像が主役・簡潔なテキスト
+.c-column-card {
+  height: 100%;
+
+  & > a {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    color: var(--wpb-color-text);
+
+    figure {
+      aspect-ratio: 4 / 3;
+      margin-block: 0 var(--wpb-size-3);
+      overflow: hidden;
+      background-color: var(--wpb-color-background-muted);
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: scale 0.5s ease;
+        will-change: scale;
+      }
+    }
+
+    time {
+      display: block;
+      margin-block: 0 var(--wpb-size-1);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--wpb-color-text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    h2,
+    h3 {
+      margin-block: 0 var(--wpb-size-1);
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    p {
+      display: -webkit-box;
+      margin-block: 0;
+      overflow: hidden;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--wpb-color-text-light);
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+
+    @include hover {
+      figure img {
+        scale: 1.05;
+      }
+    }
+  }
+}

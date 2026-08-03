@@ -1,0 +1,79 @@
+@use "../base" as *;
+
+.pg-column {
+  & > header {
+    padding-block: clamp(32px, 5vw, 64px);
+    padding-inline: clamp(16px, 4vw, 40px);
+    border-bottom: 2px solid var(--wpb-color-text);
+
+    & > div {
+      width: min(100%, 1080px);
+      margin-inline: auto;
+    }
+
+    h1 {
+      margin-block: 0;
+      font-family: var(--wpb-font-display), var(--wpb-font-jp), sans-serif;
+      font-size: fluid-clamp(32px, 64px, 375, 768);
+      font-weight: 900;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+    }
+  }
+
+  & > div {
+    width: min(100% - 32px, 1080px);
+    padding-block: clamp(32px, 6vw, 64px);
+    margin-inline: auto;
+  }
+
+  &-list {
+    display: grid;
+    gap: var(--wpb-size-4);
+    list-style: none;
+
+    @include media-size() {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &-pagination {
+    margin-block: var(--wpb-size-8) 0;
+
+    & > ul {
+      display: flex;
+      justify-content: center;
+      gap: var(--wpb-size-1);
+      list-style: none;
+
+      a,
+      span {
+        display: grid;
+        place-items: center;
+        min-width: 40px;
+        min-height: 40px;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 2px;
+      }
+
+      a {
+        color: var(--wpb-color-text-light);
+        border: 1px solid var(--wpb-color-border);
+        transition: border-color 0.15s ease, color 0.15s ease;
+
+        @include hover {
+          color: var(--wpb-color-text);
+          border-color: var(--wpb-color-border-strong);
+        }
+      }
+
+      .--active {
+        color: var(--wpb-color-text-cta);
+        background-color: var(--wpb-color-accent);
+        border: 1px solid var(--wpb-color-accent);
+      }
+    }
+  }
+}

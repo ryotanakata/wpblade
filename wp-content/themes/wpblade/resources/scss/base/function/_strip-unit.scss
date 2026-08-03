@@ -1,0 +1,18 @@
+// math.div meta.type-of math.is-unitlessを使用する
+// ----------------------------------------------------------
+@use "sass:math";
+@use "sass:meta";
+
+// strip-unit（数値から単位を取り除く）
+// -----------------------------------------------------------------
+
+@function strip-unit($number) {
+  @if meta.type-of($number) == "number" and not math.is-unitless($number) {
+    @return math.div($number, ($number * 0 + 1));
+  }
+
+  @return $number;
+}
+
+//呼び出し方
+// $value: strip-unit(32px);

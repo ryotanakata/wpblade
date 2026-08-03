@@ -1,0 +1,48 @@
+@use "../base" as *;
+
+.pg-store {
+  & > article {
+    width: min(100% - 32px, 720px);
+    padding-block: clamp(32px, 6vw, 72px);
+    margin-inline: auto;
+
+    & > header {
+      padding-block: 0 var(--wpb-size-5);
+      border-bottom: 2px solid var(--wpb-color-text);
+
+      h1 {
+        margin-block: 0;
+        font-family: var(--wpb-font-display), var(--wpb-font-jp), sans-serif;
+        font-size: fluid-clamp(28px, 52px, 375, 768);
+        font-weight: 900;
+        line-height: 1.05;
+        text-transform: uppercase;
+        letter-spacing: -0.01em;
+      }
+    }
+  }
+
+  &-body {
+    margin-block: var(--wpb-size-5) 0;
+    font-size: fluid-clamp(15px, 17px, 375, 768);
+    line-height: 1.9;
+    color: var(--wpb-color-text);
+
+    h2,
+    h3,
+    h4 {
+      margin-block: var(--wpb-size-5) var(--wpb-size-2);
+      font-weight: 700;
+    }
+
+    p {
+      margin-block: 0 var(--wpb-size-3);
+    }
+
+    a {
+      color: var(--wpb-color-accent);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+  }
+}

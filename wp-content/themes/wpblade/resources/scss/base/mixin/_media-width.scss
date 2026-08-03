@@ -1,0 +1,15 @@
+// Media Query（任意の数値でブレークポイントを使用する）
+// -----------------------------------------------------------------
+@mixin media-width($width) {
+  @media (min-width: #{$width}px) {
+    @content;
+  }
+}
+
+// 呼び出し方
+
+// .foo {
+//     @include media-width(840) {
+//         font-size: 8px;
+//     }
+// }

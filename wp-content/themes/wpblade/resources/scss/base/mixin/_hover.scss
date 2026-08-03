@@ -1,0 +1,20 @@
+// hover（ホバー可能なデバイスのみでスタイルを適用、キーボード操作のフォーカス時にも適用）
+// -----------------------------------------------------------------
+@mixin hover() {
+  &:focus-visible {
+    @content;
+  }
+  @media (any-hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+// 呼び出し方
+// .foo {
+//     color: red;
+//     @include hover {
+//         color: blue;
+//     }
+// }
