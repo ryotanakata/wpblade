@@ -10,6 +10,7 @@
     "reviewing": "レビュー中",
     "done": "完了"
   },
+  "type_property": "種別",
   "id_prefix": "WPB",
   "id_property_mcp": "userDefined:ID",
   "repository": "ryotanakata/wpblade",
