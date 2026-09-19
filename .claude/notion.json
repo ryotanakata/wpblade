@@ -1,0 +1,18 @@
+{
+  "_comment": "Notion ID の正式参照元。ルーチン・起票スキルが参照する",
+  "database_id": "b04e0d0a-1bf6-4b39-a7c5-45ed857ec904",
+  "data_source_id": "c023d48e-b124-4c64-995f-db89771dc601",
+  "status_property": "Status",
+  "status_values": {
+    "draft": "未起票",
+    "queue": "AI開発キュー",
+    "review": "AIレビュー待ち",
+    "reviewing": "レビュー中",
+    "done": "完了"
+  },
+  "id_prefix": "WPB",
+  "id_property_mcp": "userDefined:ID",
+  "repository": "ryotanakata/wpblade",
+  "base_branch": "master",
+  "test_command": "cd wp-content/themes/wpblade && npm run typecheck && npm run format:check"
+}
